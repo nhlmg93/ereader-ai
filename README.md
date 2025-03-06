@@ -1,3 +1,3 @@
 ## TODO:
-[] - connect to single store in prod
+[X] - connect to single store in prod
 [] - play with ereader package

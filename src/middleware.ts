@@ -1,14 +1,15 @@
 // middleware.js
 // This file should be placed in the root of your Next.js project
 import { NextResponse, type NextRequest } from "next/server";
+import { env } from "./env";
 
 export function middleware(request: NextRequest) {
   // Get the authorization header from the request
   const authHeader = request.headers.get("authorization");
 
   // Define your credentials (in a real app, store these securely)
-  const username = process.env.BASIC_AUTH_USER && "admin";
-  const password = process.env.BASIC_AUTH_PASS && "password";
+  const username = env.BASIC_AUTH_USER && "admin";
+  const password = env.BASIC_AUTH_PASS && "password";
 
   // Create the correctly encoded credentials
   const validAuthValue = `Basic ${Buffer.from(`${username}:${password}`).toString("base64")}`;

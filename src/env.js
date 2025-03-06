@@ -40,7 +40,7 @@ export const env = createEnv({
     SINGLESTORE_HOST: process.env.SINGLESTORE_HOST,
     SINGLESTORE_PORT: process.env.SINGLESTORE_PORT,
     BASIC_AUTH_USER: process.env.BASIC_AUTH_USER,
-    BASIC_AUTH_PASS: process.env.BASIC_AUTH_USER,
+    BASIC_AUTH_PASS: process.env.BASIC_AUTH_PASS,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

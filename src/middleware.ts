@@ -1,6 +1,6 @@
 // middleware.js
 // This file should be placed in the root of your Next.js project
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Get the authorization header from the request

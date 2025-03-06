@@ -17,6 +17,7 @@ export const env = createEnv({
     SINGLESTORE_PORT: z.string(),
     BASIC_AUTH_USER: z.string(),
     BASIC_AUTH_PASS: z.string(),
+    OPENAI_API_KEY: z.string(),
   },
 
   /**
@@ -41,6 +42,7 @@ export const env = createEnv({
     SINGLESTORE_PORT: process.env.SINGLESTORE_PORT,
     BASIC_AUTH_USER: process.env.BASIC_AUTH_USER,
     BASIC_AUTH_PASS: process.env.BASIC_AUTH_PASS,
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

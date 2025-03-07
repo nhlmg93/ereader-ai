@@ -6,7 +6,7 @@ import { env } from "~/env";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
-export function createOpenAIClient() {
+export function createOpenAIClient(): OpenAI {
   return new OpenAI({
     apiKey: env.OPENAI_API_KEY,
   });

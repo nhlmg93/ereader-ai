@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
 import { ReactReader } from "react-reader";
 import { Button } from "~/components/ui/button";
 
@@ -9,12 +9,11 @@ export default function HomePage() {
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      console.log(prompt);
       const res = await fetch("/api/v1/openai", {
         method: "POST",
         headers: {
@@ -23,15 +22,17 @@ export default function HomePage() {
         body: JSON.stringify({ prompt }),
       });
 
-      const data = await res.json();
+      const data = (await res.json()) as { result: string; error?: string };
 
       if (res.ok) {
         setResponse(data.result);
       } else {
-        setResponse(`Error: ${data.error || "Something went wrong"}`);
+        setResponse(`Error: ${data.error && "Something went wrong"}`);
       }
-    } catch (error: any) {
-      setResponse(`Error: ${error.message}`);
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Error Unknown";
+      setResponse(`Error: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +44,7 @@ export default function HomePage() {
         location={location}
         locationChanged={(epubcfi: string) => setLocation(epubcfi)}
       />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
